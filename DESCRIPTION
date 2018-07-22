@@ -1,7 +1,7 @@
 Package: UKEducationData
-Version: 1.0.0
-Title: What the Package Does (One Line, Title Case)
-Description: What the package does (one paragraph).
+Version: 0.1.0
+Title: UK Education Datasets
+Description: Provides a Unified API to various UK Education Datasets from Government and 3rd websites.
 Authors@R: person("Scott", "Bell", , "me@scottjamesbell.com", c("aut", "cre"))
 License: GPL-3
 Encoding: UTF-8
