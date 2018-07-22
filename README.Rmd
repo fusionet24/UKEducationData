@@ -28,7 +28,7 @@ devtools::install_github("fusionet24/UKEducationData")
 
 This is how you retrive data for [Get Schools Information](https://get-information-schools.service.gov.uk/):
 
-```{r example}
+```{r example, eval=FALSE}
 data <- UKEducationData::getSchoolInformation()
 ```
 
