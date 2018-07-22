@@ -8,7 +8,7 @@
 #' @return a tibble that has Edubase All Data in it
 #' @export
 #'
-#' @examples getSchoolInformation()
+#' @examples myDataFrame <- getSchoolInformation()
 getSchoolInformation <- function(refresh = FALSE, columnstoReturn = NULL,...)
 {
   if (refresh | is.null(.Edubase))

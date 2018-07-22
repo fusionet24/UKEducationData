@@ -4,7 +4,7 @@
 \alias{getSchoolInformation}
 \title{Get SchoolInformation (Edubase)}
 \usage{
-getSchoolInformation(refresh = TRUE, columnstoReturn = NULL, ...)
+getSchoolInformation(refresh = FALSE, columnstoReturn = NULL, ...)
 }
 \arguments{
 \item{refresh}{force a refresh of the data}
@@ -20,5 +20,5 @@ a tibble that has Edubase All Data in it
 Access to the Edubase Dataset that describes all UK state schools and their Links/Relationships along with key statistics.
 }
 \examples{
-getSchoolInformation()
+myDataFrame <- getSchoolInformation()
 }
