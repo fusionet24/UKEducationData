@@ -9,28 +9,31 @@
 #' @export
 #'
 #' @examples getSchoolInformation()
-getSchoolInformation <- function(refresh = TRUE, columnstoReturn = NULL,...)
+getSchoolInformation <- function(refresh = FALSE, columnstoReturn = NULL,...)
 {
-  if (refresh)
+  if (refresh | is.null(.Edubase))
     {
       edubaseResponse <- httr::GET(url = generateURIforData())
-    }
-  if (httr::http_error(edubaseResponse))
-  {
-    print("Something went wrong... Trying with yesterdays date for retrival")
+      if (httr::http_error(edubaseResponse))
+      {
+        print("Something went wrong... Trying with yesterdays date for retrival")
 
-    edubaseResponse <- httr::GET(
-        generateURIforData(fileDate =
-                         calculateFileDate(
-                           date = {Sys.time() -1 }
-                           )
-                       )
-      )
-    if(httr::http_error(edubaseResponse))
-    {
-      stop("An unexpected Error has occured")
+          edubaseResponse <- httr::GET(
+                                      generateURIforData(fileDate =
+                                                        calculateFileDate(date =
+                                                                                {Sys.time() -1 }
+                                                                          )
+                                                        )
+                                      )
+        if(httr::http_error(edubaseResponse))
+        {
+          stop("An unexpected Error has occured")
+        }
+
+      }
+      .Edubase <<- httr::content(edubaseResponse, type = "text/csv")# %>% dplyr::select(columnstoReturn)# Handle not NULL Case and pass for filter....
     }
 
+
+  invisible(.Edubase)
   }
-  httr::content(edubaseResponse, type = "text/csv")# %>% dplyr::select(columnstoReturn)# Handle not NULL Case and pass for filter....
-}
