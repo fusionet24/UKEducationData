@@ -25,3 +25,14 @@ calculateFileDate <- function(date = Sys.Date(), dateFormat ="%Y%m%d")
 {
   format(date,dateFormat) #Format Date in given spec..... allow string for future stuff
 }
+
+#' Not IN
+#'
+#' @param x
+#' @param y
+#'
+#' @return Logical
+'%!in%' <- function(x,y)
+  {
+    !('%in%'(x,y))
+  }
