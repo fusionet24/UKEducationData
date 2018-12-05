@@ -4,12 +4,12 @@
 \alias{getSchoolInformation}
 \title{Get SchoolInformation (Edubase)}
 \usage{
-getSchoolInformation(refresh = FALSE, columnstoReturn = NULL, ...)
+getSchoolInformation(dataset = "All Data", refresh = FALSE, ...)
 }
 \arguments{
-\item{refresh}{force a refresh of the data}
+\item{dataset}{which Get Schools Information Data ("All Data", "All Data Links", "All Open State Schools")}
 
-\item{columnstoReturn}{Columns to return from the cached dataset}
+\item{refresh}{force a refresh of the data}
 
 \item{...}{addtional parameters to pass into subsequent functions}
 }
