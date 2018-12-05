@@ -13,6 +13,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
 Imports: 
     magrittr,
-    glue
+    dplyr
 Depends: 
-    httr
+    httr,
+    glue,
+    tibble
