@@ -11,7 +11,7 @@
 #' @examples myDataFrame <- getSchoolInformation()
 getSchoolInformation <- function(dataset = "All Data",refresh = FALSE,...)
 {
-  dataOptions <- data_frame(datasetName = c("All Data","All Data Links","All Open State Schools") , relative_uri = c( "edubasealldata","links_edubasealldata",NA))
+  dataOptions <- tibble::data_frame(datasetName = c("All Data","All Data Links","All Open State Schools") , relative_uri = c( "edubasealldata","links_edubasealldata",NA))
 
   #list("http://ea-edubase-api-prod.azurewebsites.net/edubase")
   if(dataset %!in% dataOptions$datasetName)
@@ -21,8 +21,8 @@ getSchoolInformation <- function(dataset = "All Data",refresh = FALSE,...)
   if (refresh | is.null(.Edubase))
     {
       dataOptions %>%
-          filter(datasetName %in% dataset) %>%
-          pull(relative_uri)-> dataset
+          dplyr::filter(datasetName %in% dataset) %>%
+          dplyr::pull(relative_uri)-> dataset
       edubaseResponse <- generateURIforData(dataset = dataset) %>%
                                                                 purrr::map(httr::GET)
 
@@ -33,7 +33,7 @@ getSchoolInformation <- function(dataset = "All Data",refresh = FALSE,...)
         {
           stop("An unexpected Error has occured")
         }
-      .Edubase <<- edubaseResponse %>% purrr::map(.f = content)# %>% dplyr::select(columnstoReturn)# Handle not NULL Case and pass for filter....
+      .Edubase <<- edubaseResponse %>% purrr::map(.f = httr::content)# %>% dplyr::select(columnstoReturn)# Handle not NULL Case and pass for filter....
 
       }
 
