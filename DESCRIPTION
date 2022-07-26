@@ -1,5 +1,5 @@
 Package: UKEducationData
-Version: 0.1.0
+Version: 0.2.0
 Title: UK Education Datasets
 Description: Provides a Unified API to various UK Education Datasets from Government and 3rd websites.
 Authors@R: person("Scott", "Bell", , "me@scottjamesbell.com", c("aut", "cre"))
@@ -16,5 +16,4 @@ Imports:
     dplyr
 Depends: 
     httr,
-    glue,
-    tibble
+    glue

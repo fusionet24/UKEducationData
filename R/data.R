@@ -1,42 +1,18 @@
-
 #' Get SchoolInformation (Edubase)
-#' @description Access to the Edubase Dataset that describes all UK state schools and their Links/Relationships along with key statistics.
-#' @param dataset which Get Schools Information Data ("All Data", "All Data Links", "All Open State Schools")
+#' @description Access to the
+#' @param dataset
 #' @param refresh force a refresh of the data
+#' @param region represents the Local Authority (LA) code, defaults to 0 which is all English LA's
 #' @param ... addtional parameters to pass into subsequent functions
 #'
 #' @return a tibble that has Edubase All Data in it
 #' @export
 #'
 #' @examples myDataFrame <- getSchoolInformation()
-getSchoolInformation <- function(dataset = "All Data",refresh = FALSE,...)
+get_education_data_england <- function(dataset = "All Data",region = 0, refresh = FALSE,...)
 {
-  dataOptions <- tibble::data_frame(datasetName = c("All Data","All Data Links","All Open State Schools") , relative_uri = c( "edubasealldata","links_edubasealldata",NA))
-
-  #list("http://ea-edubase-api-prod.azurewebsites.net/edubase")
-  if(dataset %!in% dataOptions$datasetName)
-  {
-    stop(glue::glue("This is not a vaild dataset choice. Choices are {dataOptions}"))
-  }
-  if (refresh | is.null(.Edubase))
-    {
-      dataOptions %>%
-          dplyr::filter(datasetName %in% dataset) %>%
-          dplyr::pull(relative_uri)-> dataset
-      edubaseResponse <- generateURIforData(dataset = dataset) %>%
-                                                                purrr::map(httr::GET)
-
-      failures <- purrr::map(edubaseResponse, httr::http_error) %>%
-        purrr::reduce(any)
-
-        if(failures)
-        {
-          stop("An unexpected Error has occured")
-        }
-      .Edubase <<- edubaseResponse %>% purrr::map(.f = httr::content)# %>% dplyr::select(columnstoReturn)# Handle not NULL Case and pass for filter....
-
-      }
 
 
   invisible(.Edubase)
-  }
+}
+
